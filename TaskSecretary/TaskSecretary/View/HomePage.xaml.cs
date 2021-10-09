@@ -24,11 +24,5 @@ namespace TaskSecretary.View
         {
             InitializeComponent();
         }
-
-        //Заменить функцию по шаблону MVVM 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.MainWindow.Close();
-        }
     }
 }

@@ -8,29 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="HomePage"
-      Background="Gray">
-    <Page.Resources>
-        <ImageBrush x:Key="CloseBtnMouseOver" 
-                    ImageSource="Res/Icons/closeBtn_mouseOver.png"/>
-        <Style x:Key="Close_btn" TargetType="Button">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border x:Name="button" BorderThickness="0" 
-                                Background="{TemplateBinding Background}">
-                        </Border>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" TargetName="button" 
-                                        Value="{StaticResource CloseBtnMouseOver}"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </Page.Resources>
-    
+      Background="Gray">    
     <Grid>        
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -45,15 +23,7 @@
         </Grid.RowDefinitions>
         <Image HorizontalAlignment="Center" VerticalAlignment="Center"
                Grid.ColumnSpan="10" Grid.RowSpan="10"
-               Stretch="Fill" Source="Res/Backgrounds/background_img.png"/>
-        <Button Grid.Column="3" Grid.Row="0" Width="50" Height="50" 
-                HorizontalAlignment="Center" VerticalAlignment="Center"
-                BorderThickness="0" Style="{StaticResource Close_btn}" 
-                Click="Button_Click" Command="">
-            <Button.Background>
-                <ImageBrush ImageSource="Res/Icons/closeBtn_default.png"/>                
-            </Button.Background>            
-        </Button>
+               Stretch="Fill" Source="Res/Backgrounds/background_img.png"/>        
         <Label Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="2" Content="Made by Tataru Vadim" 
                Foreground="White" FontSize="16"/>
     </Grid>

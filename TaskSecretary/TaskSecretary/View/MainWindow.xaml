@@ -6,10 +6,10 @@
         xmlns:local="clr-namespace:TaskSecretary"
         xmlns:vm="clr-namespace:TaskSecretary.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="Secretary" 
         Height="600" Width="1000" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
-        Background="Gray">
+        Background="White">
     <Window.DataContext>
         <vm:MainViewModel/>
     </Window.DataContext>
@@ -98,14 +98,48 @@
             <ColumnDefinition Width="220"/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Frame Grid.ColumnSpan="10" Grid.RowSpan="10" NavigationUIVisibility="Hidden" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Grid.ColumnSpan="10" BorderThickness="0" Background="Transparent" MouseDown="BorderMouseDown">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Image Name="MinBtn" Height="25" Width="25" MouseDown="MinBtn_MouseDown">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="Res/Icons/minimize_default.png"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=MinBtn}"
+                                             Value="True">
+                                    <Setter Property="Source" Value="Res/Icons/minimize_mouseOver.png"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+                <Image Name="CloseBtn" Height="25" Width="25" MouseDown="CloseBtn_MouseDown">
+                    <Image.Style>
+                        <Style TargetType="{x:Type Image}">
+                            <Setter Property="Source" Value="Res/Icons/closeBtn_default.png"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsMouseOver, ElementName=CloseBtn}"
+                                             Value="True">
+                                    <Setter Property="Source" Value="Res/Icons/closeBtn_mouseOver.png"/>
+                                </DataTrigger>                 
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+            </StackPanel>            
+        </Border>
+        <Frame Grid.Row="1" Grid.ColumnSpan="10" Grid.RowSpan="1" NavigationUIVisibility="Hidden" 
                Content="{Binding CurrentPage}"></Frame>
-        <Grid Name="SlideMenu" Grid.Column="0" HorizontalAlignment="Left">
+        <Grid Name="SlideMenu" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
             <Grid.Style>
                 <Style TargetType="Grid">
                     <Setter Property="Width" Value="60"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=IsChecked, ElementName=OpenCloseSlideMenuBtn}"
+                        <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=SlideMenu}"
                                                      Value="True">
                             <Setter Property="Width" Value="220"/>
                         </DataTrigger>
@@ -115,33 +149,10 @@
             <Border BorderThickness="1" BorderBrush="#FF303033"/>
             <Border BorderThickness="0" Background="Black" Opacity=".6"/>
             <StackPanel Orientation="Vertical">
-                <Grid>                    
-                    <ToggleButton Focusable="False" x:Name="OpenCloseSlideMenuBtn" Height="30" Width="30"
-                                  VerticalAlignment="Top" HorizontalAlignment="Left" 
-                                  Margin="20,20,0,20">
-                        <ToggleButton.Template>
-                            <ControlTemplate>
-                                <Image>
-                                    <Image.Style>
-                                        <Style TargetType="Image">
-                                            <Setter Property="Source" Value="Res/Icons/tgBtn_Open.png"/>
-                                            <Style.Triggers>
-                                                <DataTrigger Binding="{Binding RelativeSource={RelativeSource 
-                                                Mode=FindAncestor, 
-                                                AncestorType={x:Type ToggleButton}},
-                                                Path=IsChecked}" Value="true">
-                                                    <Setter Property="Source" Value="Res/Icons/tgBtn_Close.png"/>
-                                                </DataTrigger>
-                                            </Style.Triggers>
-                                        </Style>
-                                    </Image.Style>
-                                </Image>
-                            </ControlTemplate>
-                        </ToggleButton.Template>
-                    </ToggleButton>
+                <Grid>
                     <Label Content="М Е Н Ю" Foreground="White" 
                            VerticalAlignment="Center" HorizontalAlignment="Left"
-                           Width="90" FontSize="20" Margin="80,0,0,0"/>
+                           Width="90" FontSize="20" Margin="60,0,60,0"/>
                 </Grid>
                 <Button Template="{StaticResource ResourceKey=SlideMenuBtn}"
                         Content="Главная" Command="{Binding OpenHomePage}">
