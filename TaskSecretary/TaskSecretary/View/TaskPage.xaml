@@ -9,7 +9,6 @@
       Title="TaskPage"
       Background="Gray">
 
-    <Grid>
-        
+    <Grid>        
     </Grid>
 </Page>

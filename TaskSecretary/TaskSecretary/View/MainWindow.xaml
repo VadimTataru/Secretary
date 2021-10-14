@@ -136,13 +136,27 @@
                Content="{Binding CurrentPage}"></Frame>
         <Grid Name="SlideMenu" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Left">
             <Grid.Style>
-                <Style TargetType="Grid">
+                <Style TargetType="{x:Type Grid}">
                     <Setter Property="Width" Value="60"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding Path=IsMouseOver, ElementName=SlideMenu}"
-                                                     Value="True">
-                            <Setter Property="Width" Value="220"/>
-                        </DataTrigger>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.2"
+                                                     Storyboard.TargetProperty="Width"
+                                                     To="220"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Duration="0:0:0.1"
+                                                     Storyboard.TargetProperty="Width"
+                                                     To="60"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
                     </Style.Triggers>
                 </Style>
             </Grid.Style>
