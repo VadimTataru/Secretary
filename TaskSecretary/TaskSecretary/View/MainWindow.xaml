@@ -161,7 +161,7 @@
                 </Style>
             </Grid.Style>
             <Border BorderThickness="1" BorderBrush="#FF303033"/>
-            <Border BorderThickness="0" Background="Black" Opacity=".6"/>
+            <Border BorderThickness="0" Background="Black" Opacity=".8"/>
             <StackPanel Orientation="Vertical">
                 <Grid>
                     <Label Content="М Е Н Ю" Foreground="White" 
